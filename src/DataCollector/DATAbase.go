@@ -5,7 +5,7 @@ package main
 // Created by: Cláudia Rodrigues claudiagr.rodrigues@gmail.com
 // With: Visual Studio Code
 // Started at: 17-05-2020
-// Finished at: tbd
+// Finished at: 18-05-2020
 //
 // This file creates a data base of periodic reading values of CPU combined percentage and RAM free memory, in kB,
 // with a second period lecture. Also, it simulates an external device, generating periodically (with period of 1s)
@@ -15,6 +15,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"math/rand"
 	"time"
 
@@ -35,7 +36,12 @@ func main() {
 	var samp sample
 
 	//DATAbase file
-	database, _ := sql.Open("sqlite3", "./DATAbase.db")
+	database, err := sql.Open("sqlite3", "./DATAbase.db")
+	//check error
+	if err != nil {
+		fmt.Println("Failed to connect", err)
+		return
+	}
 
 	// DATA BASE table for CPU AND RAM values
 	statement, _ := database.Prepare("CREATE TABLE IF NOT EXISTS OScollector (ID INTEGER PRIMARY KEY, FreeMemory INTEGER, CPUcombined INTEGER)")
