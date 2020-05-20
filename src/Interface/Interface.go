@@ -43,12 +43,12 @@ func main() {
 		}
 		// second argument must be the number of samples to be returned
 		n, err := strconv.Atoi(argsWithoutProg[1])
-		if err != nil || n < 0 {
-			fmt.Printf("%q is not a positive number.\n", argsWithoutProg[1])
+		if err != nil || n <= 0 {
+			fmt.Printf("%q is not a positive number different from 0.\n", argsWithoutProg[1])
 			fmt.Println("See 'Interface.exe -h' for usage")
 			os.Exit(4)
 		}
-		variables := []string{"", "var1", "var2", "var3", "var4"}
+		variables := []string{"id", "var1", "var2", "var3", "var4"}
 		printCmd(variables, n, false)
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -61,8 +61,8 @@ func main() {
 		}
 		// second argument must be the number of samples to be returned
 		n, err := strconv.Atoi(argsWithoutProg[1])
-		if err != nil || n < 0 {
-			fmt.Printf("%q is not a positive number.\n", argsWithoutProg[1])
+		if err != nil || n <= 0 {
+			fmt.Printf("%q is not a positive number different from 0.\n", argsWithoutProg[1])
 			fmt.Println("See 'Interface.exe -h' for usage")
 			os.Exit(6)
 		}
